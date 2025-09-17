@@ -1,0 +1,46 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Env files
+.env
+.env.*.local
+frontend/.env.local
+contracts/.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Hardhat artifacts
+contracts/artifacts/
+contracts/cache/
+contracts/typechain-types/
+typechain/
+
+# Coverage reports
+coverage/
+coverage.json
+
+# Next.js build
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+
+# Local DBs / caches
+*.sqlite
+*.db
+.cache/
+.tmp/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Editor settings (optional but useful)
+.vscode/
+.idea/
+*.swp
