@@ -100,7 +100,7 @@ export default function HelpModal() {
                     </p>
                     <p className="text-sm text-slate-600 mt-1">
                       <strong>What they do:</strong> Check your real documents
-                      and give you a "digital stamp"
+                      and give you &quot;digital stamp&quot;
                     </p>
                     <p className="text-xs text-slate-500 mt-2">
                       Example: HDFC Bank, UIDAI, Your College
@@ -115,7 +115,7 @@ export default function HelpModal() {
                   <span className="text-3xl">👤</span>
                   <div>
                     <h4 className="font-semibold text-green-900">
-                      HOLDER (धारक) - That's YOU!
+                      HOLDER (धारक) - That&apos;s YOU!
                     </h4>
                     <p className="text-sm text-slate-600 mt-1">
                       <strong>Who:</strong> Regular person like you and me
@@ -143,8 +143,8 @@ export default function HelpModal() {
                       <strong>Who:</strong> Companies that need to verify you
                     </p>
                     <p className="text-sm text-slate-600 mt-1">
-                      <strong>What they do:</strong> Check if you're verified
-                      (only if you allow)
+                      <strong>What they do:</strong> Check if you&apos;re
+                      verified (only if you allow)
                     </p>
                     <p className="text-xs text-slate-500 mt-2">
                       Example: New bank, Loan app, Ola/Uber
@@ -216,7 +216,7 @@ export default function HelpModal() {
 
               <div className="border border-red-200 rounded-lg p-4">
                 <p className="font-semibold text-red-900 mb-2">
-                  ❌ DON'T Upload:
+                  ❌ DON&apos;T Upload:
                 </p>
                 <ul className="text-sm text-slate-700 space-y-1">
                   <li>• Random photos</li>
@@ -238,7 +238,8 @@ export default function HelpModal() {
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 space-y-2">
               <p className="text-sm text-amber-900">
                 <strong>1. Use EXACT same file:</strong> Issuer uploads
-                "aadhaar.pdf" → Verifier must upload the EXACT "aadhaar.pdf"
+                &quot;aadhaar.pdf&quot; → Verifier must upload the EXACT
+                &quot;aadhaar.pdf&quot;
               </p>
               <p className="text-sm text-amber-900">
                 <strong>2. Grant consent first:</strong> Before anyone can
@@ -246,11 +247,11 @@ export default function HelpModal() {
               </p>
               <p className="text-sm text-amber-900">
                 <strong>3. Keep files safe:</strong> Store original documents in
-                Google Drive or USB. You'll need them!
+                Google Drive or USB. You&apos;ll need them!
               </p>
               <p className="text-sm text-amber-900">
                 <strong>4. This is TEST mode:</strong> Use fake/test documents
-                for now. Don't upload real sensitive documents yet!
+                for now. Don&apos;t upload real sensitive documents yet!
               </p>
             </div>
           </section>
@@ -264,7 +265,7 @@ export default function HelpModal() {
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-green-50 p-4 rounded-lg">
                 <p className="font-semibold text-green-900 mb-2">
-                  ✅ What's stored on blockchain:
+                  ✅ What&apos;s stored on blockchain:
                 </p>
                 <ul className="text-sm text-green-800 space-y-1">
                   <li>• A code (fingerprint) of your document</li>
@@ -276,7 +277,7 @@ export default function HelpModal() {
 
               <div className="bg-blue-50 p-4 rounded-lg">
                 <p className="font-semibold text-blue-900 mb-2">
-                  ❌ What's NOT stored:
+                  ❌ What&apos;s NOT stored:
                 </p>
                 <ul className="text-sm text-blue-800 space-y-1">
                   <li>• Your actual Aadhaar PDF</li>
@@ -302,7 +303,7 @@ export default function HelpModal() {
                 <div>
                   <p className="font-semibold">Install MetaMask</p>
                   <p className="text-sm text-slate-600">
-                    It's like Paytm for blockchain. Get it from Chrome Web
+                    It&apos;s like Paytm for blockchain. Get it from Chrome Web
                     Store.
                   </p>
                 </div>
@@ -328,8 +329,8 @@ export default function HelpModal() {
                 <div>
                   <p className="font-semibold">Connect Wallet</p>
                   <p className="text-sm text-slate-600">
-                    Click "Connect Wallet" button on this app and approve in
-                    MetaMask.
+                    Click &quot;Connect Wallet&quot; button on this app and
+                    approve in MetaMask.
                   </p>
                 </div>
               </div>
@@ -355,9 +356,9 @@ export default function HelpModal() {
               💬 Still Confused?
             </h3>
             <p className="text-sm text-slate-700">
-              Don't worry! Start with the <strong>"Holder"</strong> tab to see
-              if you have any verification. Most users will be Holders (regular
-              people).
+              Don&apos;t worry! Start with the{" "}
+              <strong>&quot;Holder&quot;</strong> tab to see if you have any
+              verification. Most users will be Holders (regular people).
             </p>
             <p className="text-sm text-slate-700 mt-2">
               For more help, contact: [Your Email/Support]
@@ -368,7 +369,7 @@ export default function HelpModal() {
         {/* Footer */}
         <div className="sticky bottom-0 bg-slate-50 border-t border-slate-200 p-4">
           <Button onClick={() => setIsOpen(false)} className="w-full">
-            Got it! Let's start (समझ गया! शुरू करते हैं)
+            Got it! Let&apos;s start (समझ गया! शुरू करते हैं)
           </Button>
         </div>
       </div>

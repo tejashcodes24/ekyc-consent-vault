@@ -1,19 +1,53 @@
 import { BrowserProvider, Contract, ethers } from "ethers";
 import { CONTRACT_ADDRESS, KYC_VAULT_ABI, SEPOLIA_CHAIN_ID } from "./contract";
 
+interface EthereumProvider {
+  request: (args: { method: string; params?: unknown[] }) => Promise<unknown>;
+  on?: (event: string, callback: (...args: unknown[]) => void) => void;
+  removeListener?: (
+    event: string,
+    callback: (...args: unknown[]) => void
+  ) => void;
+}
+
+interface SwitchEthereumChainParams {
+  chainId: string;
+}
+
+interface EthereumRequestArgs {
+  method: string;
+  params?: SwitchEthereumChainParams[];
+}
+
 declare global {
   interface Window {
-    ethereum?: any;
+    ethereum?: EthereumProvider;
   }
 }
 
-export async function connectWallet() {
+interface EthereumRpcError extends Error {
+  code: number;
+  message: string;
+}
+
+function isEthereumRpcError(error: unknown): error is EthereumRpcError {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    typeof (error as EthereumRpcError).code === "number" &&
+    "message" in error &&
+    typeof (error as EthereumRpcError).message === "string"
+  );
+}
+
+export async function connectWallet(): Promise<string> {
   if (!window.ethereum) {
     throw new Error("MetaMask is not installed!");
   }
 
   const provider = new BrowserProvider(window.ethereum);
-  const accounts = await provider.send("eth_requestAccounts", []);
+  const accounts = (await provider.send("eth_requestAccounts", [])) as string[];
 
   // Check if on Sepolia network
   const network = await provider.getNetwork();
@@ -22,9 +56,9 @@ export async function connectWallet() {
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
         params: [{ chainId: "0xaa36a7" }], // Sepolia chainId in hex
-      });
-    } catch (error: any) {
-      if (error.code === 4902) {
+      } as EthereumRequestArgs);
+    } catch (error: unknown) {
+      if (isEthereumRpcError(error) && error.code === 4902) {
         throw new Error("Please add Sepolia network to MetaMask");
       }
       throw error;
@@ -34,7 +68,7 @@ export async function connectWallet() {
   return accounts[0];
 }
 
-export async function getContract() {
+export async function getContract(): Promise<Contract> {
   if (!window.ethereum) {
     throw new Error("MetaMask is not installed!");
   }
@@ -44,7 +78,7 @@ export async function getContract() {
   return new Contract(CONTRACT_ADDRESS, KYC_VAULT_ABI, signer);
 }
 
-export async function getReadOnlyContract() {
+export async function getReadOnlyContract(): Promise<Contract> {
   if (!window.ethereum) {
     throw new Error("MetaMask is not installed!");
   }

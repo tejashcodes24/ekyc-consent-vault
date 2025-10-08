@@ -34,9 +34,13 @@ export default function IssuerTab({ account }: { account: string }) {
       alert("✅ KYC issued successfully!");
       setHolderAddress("");
       setFile(null);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
-      alert("Error: " + error.message);
+      if (error instanceof Error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("An unknown error occurred");
+      }
     } finally {
       setLoading(false);
     }

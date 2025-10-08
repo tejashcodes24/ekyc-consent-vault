@@ -1,20 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { getContract, getReadOnlyContract } from "@/lib/web3";
+
+interface KycInfo {
+  issuer: string;
+  issuedAt: string;
+  valid: boolean;
+}
 
 export default function HolderTab({ account }: { account: string }) {
   const [verifierAddress, setVerifierAddress] = useState("");
   const [loading, setLoading] = useState(false);
-  const [kycInfo, setKycInfo] = useState<any>(null);
+  const [kycInfo, setKycInfo] = useState<KycInfo | null>(null);
   const [txHash, setTxHash] = useState("");
 
-  useEffect(() => {
-    loadKycInfo();
-  }, [account]);
-
-  const loadKycInfo = async () => {
+  const loadKycInfo = useCallback(async () => {
     try {
       const contract = await getReadOnlyContract();
       const record = await contract.getKycRecord(account);
@@ -25,11 +27,18 @@ export default function HolderTab({ account }: { account: string }) {
           issuedAt: new Date(Number(record[1]) * 1000).toLocaleString(),
           valid: record[2],
         });
+      } else {
+        setKycInfo(null);
       }
     } catch (error) {
       console.error("Error loading KYC info:", error);
+      setKycInfo(null);
     }
-  };
+  }, [account]);
+
+  useEffect(() => {
+    loadKycInfo();
+  }, [loadKycInfo]);
 
   const handleGrantConsent = async () => {
     if (!verifierAddress) {
@@ -49,9 +58,13 @@ export default function HolderTab({ account }: { account: string }) {
 
       alert("✅ Consent granted successfully!");
       setVerifierAddress("");
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
-      alert("Error: " + error.message);
+      if (error instanceof Error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("An unknown error occurred");
+      }
     } finally {
       setLoading(false);
     }
@@ -75,9 +88,13 @@ export default function HolderTab({ account }: { account: string }) {
 
       alert("✅ Consent revoked successfully!");
       setVerifierAddress("");
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
-      alert("Error: " + error.message);
+      if (error instanceof Error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("An unknown error occurred");
+      }
     } finally {
       setLoading(false);
     }

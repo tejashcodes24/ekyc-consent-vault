@@ -31,9 +31,13 @@ export default function VerifierTab({ account }: { account: string }) {
       const isValid = await contract.verifyKyc(holderAddress, documentHash);
 
       setVerificationResult(isValid);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
-      alert("Error: " + error.message);
+      if (error instanceof Error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("An unknown error occurred");
+      }
     } finally {
       setLoading(false);
     }
@@ -46,8 +50,8 @@ export default function VerifierTab({ account }: { account: string }) {
           Verify KYC Credential
         </h2>
         <p className="text-sm text-slate-600">
-          Verify a holder's KYC by uploading their document. The document hash
-          will be compared with the on-chain record.
+          Verify a holder&apos;s KYC by uploading their document. The document
+          hash will be compared with the on-chain record.
         </p>
       </div>
 
@@ -141,7 +145,7 @@ export default function VerifierTab({ account }: { account: string }) {
             >
               {verificationResult
                 ? "The document hash matches and the holder has granted you consent."
-                : "Either the document hash doesn't match, consent is not granted, or the KYC is invalid."}
+                : "Either the document hash doesn&apos;t match, consent is not granted, or the KYC is invalid."}
             </p>
           </div>
         )}

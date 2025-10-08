@@ -20,8 +20,12 @@ export default function Home() {
       setLoading(true);
       const address = await connectWallet();
       setAccount(address);
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert("An unknown error occurred while connecting wallet");
+      }
     } finally {
       setLoading(false);
     }
