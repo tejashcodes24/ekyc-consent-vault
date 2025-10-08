@@ -160,7 +160,6 @@ npx hardhat run scripts/deploy.js --network sepolia
 **Smart Contract:**
 - Solidity 0.8.19
 - Hardhat
-- OpenZeppelin (if used)
 
 **Frontend:**
 - Next.js 14
@@ -216,20 +215,10 @@ mapping(address => mapping(address => bool)) consent;
 
 MIT License
 
-## 👥 Contributors
-
-Built as part of a blockchain identity verification project.
-
 ## 🔗 Links
 
-- **Live Demo**: [Your Vercel URL]
+- **Live Demo**: [https://ekyc-consent-vault.vercel.app/]
 - **Contract**: [Sepolia Etherscan](https://sepolia.etherscan.io/address/0xDDc0F74A4528aEB06e81615B2B294FeCC757f17C)
-- **GitHub**: [Your Repository]
-
-## 📞 Support
-
-For questions or issues, please open a GitHub issue or contact [your email].
-
----
+- **GitHub**: [https://github.com/bismaysarangi/ekyc-consent-vault/]
 
 **⚠️ Disclaimer**: This is a demonstration project on a testnet. Do not use for production or with real sensitive data without proper security audits.
